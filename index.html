@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio | Bento Grid</title>
+    
+    <!-- Google Fonts: Inter & Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        'card-bg': '#F5F5F7',
+                        'electric-blue': '#2952FF', // Vivid Electric Blue
+                        'charcoal': '#1D1D1F',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'hover': '0 20px 50px -12px rgba(0,0,0,0.15)',
+                    },
+                    transitionTimingFunction: {
+                        'spring': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Base Styles */
+        body {
+            background-color: #FFFFFF;
+            color: #1D1D1F;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Card Styles */
+        .bento-card {
+            background-color: #F5F5F7;
+            border-radius: 24px;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+            overflow: hidden;
+            position: relative;
+            /* Subtle border to define edges on white bg */
+            border: 1px solid rgba(0,0,0,0.02); 
+        }
+
+        .bento-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.12);
+            z-index: 10;
+        }
+
+        /* Hide scrollbar for internal scroll containers */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Floating animation for decorative elements */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Noise texture overlay for a premium feel (optional) */
+        .texture-overlay {
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+
+    <!-- Main Grid Container -->
+    <main class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-4 auto-rows-[minmax(180px,auto)] md:auto-rows-[220px] gap-4 md:gap-6">
+
+        <!-- 1. Profile / About (Large: 2x2) -->
+        <article class="bento-card md:col-span-2 md:row-span-2 p-8 flex flex-col justify-between group">
+            <div class="texture-overlay"></div>
+            <div class="relative z-10">
+                <div class="w-20 h-20 rounded-full bg-white mb-6 overflow-hidden border border-gray-100 shadow-sm">
+                    <!-- Placeholder for Profile Image -->
+                    <img src="https://api.dicebear.com/9.x/notionists/svg?seed=Alex&backgroundColor=e5e7eb" alt="Profile" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-4xl font-bold tracking-tight mb-3 text-charcoal">
+                    Hello, I'm <span class="text-gray-500">Alex.</span>
+                </h1>
+                <p class="text-lg text-gray-600 leading-relaxed max-w-md">
+                    東京を拠点とするフロントエンドエンジニア。<br>
+                    デザインとテクノロジーの境界線で、直感的で美しいデジタル体験を構築しています。
+                </p>
+            </div>
+            
+            <div class="relative z-10 flex gap-4 mt-8">
+                <a href="#" class="p-3 bg-white rounded-full hover:bg-gray-50 transition-colors shadow-sm" aria-label="GitHub">
+                    <i data-lucide="github" class="w-5 h-5 text-gray-700"></i>
+                </a>
+                <a href="#" class="p-3 bg-white rounded-full hover:bg-gray-50 transition-colors shadow-sm" aria-label="Twitter">
+                    <i data-lucide="twitter" class="w-5 h-5 text-gray-700"></i>
+                </a>
+                <a href="#" class="p-3 bg-white rounded-full hover:bg-gray-50 transition-colors shadow-sm" aria-label="LinkedIn">
+                    <i data-lucide="linkedin" class="w-5 h-5 text-gray-700"></i>
+                </a>
+            </div>
+        </article>
+
+        <!-- 2. Map / Location (1x1) -->
+        <article class="bento-card p-0 flex flex-col relative group cursor-default">
+            <div class="absolute inset-0 bg-gray-200 opacity-50 group-hover:opacity-40 transition-opacity">
+                 <!-- Simple decorative map pattern -->
+                 <svg class="w-full h-full" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0H100V100H0z" fill="#F5F5F7"/>
+                    <path d="M20 20H80M20 40H60M20 60H90" stroke="#E5E5E5" stroke-width="2"/>
+                    <circle cx="60" cy="50" r="4" fill="#1D1D1F" class="animate-pulse"/>
+                    <circle cx="60" cy="50" r="12" stroke="#1D1D1F" stroke-opacity="0.2"/>
+                 </svg>
+            </div>
+            <div class="absolute bottom-4 left-4 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-sm border border-white/50 z-10">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="map-pin" class="w-3 h-3 text-electric-blue"></i>
+                    <span class="text-xs font-medium text-gray-800">Tokyo, Japan</span>
+                </div>
+            </div>
+            <div class="absolute top-4 right-4 z-10">
+                <div id="clock" class="text-xs font-mono font-medium text-gray-400">00:00 JST</div>
+            </div>
+        </article>
+
+        <!-- 3. Projects Link (1x1) -->
+        <a href="#projects" class="bento-card p-6 flex flex-col justify-between group cursor-pointer hover:bg-gray-200 transition-colors duration-300">
+            <div class="flex justify-between items-start">
+                <div class="p-2 bg-white rounded-xl shadow-sm">
+                    <i data-lucide="folder-kanban" class="w-6 h-6 text-gray-800"></i>
+                </div>
+                <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-400 group-hover:text-gray-800 transition-colors"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-charcoal">Projects</h2>
+                <p class="text-sm text-gray-500 mt-1">Case Studies</p>
+            </div>
+        </a>
+
+        <!-- 4. Contact / Primary Action (1x2) - ACCENT COLOR -->
+        <a href="#contact" class="bento-card md:row-span-2 bg-electric-blue border-none group relative flex flex-col justify-between p-8 overflow-hidden cursor-pointer">
+            <!-- Accent Background -->
+            <div class="absolute inset-0 bg-electric-blue"></div>
+            
+            <!-- Decorative circles -->
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+            <div class="absolute bottom-10 -left-10 w-32 h-32 bg-blue-400 opacity-20 rounded-full blur-xl"></div>
+
+            <div class="relative z-10">
+                <i data-lucide="mail" class="w-8 h-8 text-white mb-4"></i>
+                <h2 class="text-3xl font-bold text-white leading-tight">
+                    Let's<br>Work<br>Together.
+                </h2>
+            </div>
+            
+            <div class="relative z-10 mt-auto">
+                <span class="inline-flex items-center gap-2 text-white/90 font-medium group-hover:gap-3 transition-all">
+                    Contact Me <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </span>
+            </div>
+        </a>
+
+        <!-- 5. Tech Stack (2x1) -->
+        <article class="bento-card md:col-span-2 p-6 flex flex-col justify-center">
+            <div class="texture-overlay"></div>
+            <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Tech Stack</h3>
+            <div class="flex flex-wrap gap-3">
+                <!-- Skill Tags -->
+                <span class="px-4 py-2 bg-white rounded-lg text-sm font-medium text-gray-700 shadow-sm border border-gray-100 flex items-center gap-2">
+                    <i data-lucide="code-2" class="w-4 h-4 text-blue-500"></i> React
+                </span>
+                <span class="px-4 py-2 bg-white rounded-lg text-sm font-medium text-gray-700 shadow-sm border border-gray-100 flex items-center gap-2">
+                    <i data-lucide="box" class="w-4 h-4 text-yellow-500"></i> TypeScript
+                </span>
+                <span class="px-4 py-2 bg-white rounded-lg text-sm font-medium text-gray-700 shadow-sm border border-gray-100 flex items-center gap-2">
+                    <i data-lucide="wind" class="w-4 h-4 text-cyan-400"></i> Tailwind
+                </span>
+                <span class="px-4 py-2 bg-white rounded-lg text-sm font-medium text-gray-700 shadow-sm border border-gray-100 flex items-center gap-2">
+                    <i data-lucide="zap" class="w-4 h-4 text-orange-500"></i> Next.js
+                </span>
+                <span class="px-4 py-2 bg-white rounded-lg text-sm font-medium text-gray-700 shadow-sm border border-gray-100">
+                    Figma
+                </span>
+                <span class="px-4 py-2 bg-white rounded-lg text-sm font-medium text-gray-700 shadow-sm border border-gray-100">
+                    Node.js
+                </span>
+            </div>
+        </article>
+
+        <!-- 6. Blog / Insights (1x1) -->
+        <article class="bento-card p-6 flex flex-col justify-between group cursor-pointer">
+            <div class="texture-overlay"></div>
+            <div class="flex justify-between items-start z-10">
+                 <div class="p-2 bg-gray-900 text-white rounded-xl shadow-sm">
+                    <i data-lucide="pen-tool" class="w-6 h-6"></i>
+                </div>
+            </div>
+            <div class="z-10 mt-4">
+                <h2 class="text-lg font-bold text-charcoal leading-snug group-hover:text-electric-blue transition-colors">
+                    The Future of UI Design
+                </h2>
+                <p class="text-xs text-gray-500 mt-2">Dec 2023 • 5 min read</p>
+            </div>
+        </article>
+
+        <!-- 7. Copy Email (1x1) -->
+        <div class="bento-card p-0 flex items-center justify-center cursor-pointer group" onclick="copyEmail()">
+            <div class="texture-overlay"></div>
+            <div class="text-center relative z-10">
+                <div class="w-12 h-12 mx-auto bg-white rounded-full shadow-sm flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <i id="copy-icon" data-lucide="copy" class="w-5 h-5 text-gray-700"></i>
+                </div>
+                <p class="text-sm font-medium text-gray-800" id="email-text">Copy Email</p>
+                <p class="text-xs text-gray-400 mt-1 opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-6 left-0 right-0 mx-auto">Click to copy</p>
+            </div>
+        </div>
+
+        <!-- 8. Newsletter / Subscription (2x1) -->
+        <article class="bento-card md:col-span-2 p-6 flex items-center justify-between">
+            <div class="texture-overlay"></div>
+            <div class="z-10 w-full">
+                <div class="flex items-center gap-3 mb-2">
+                     <i data-lucide="sparkles" class="w-5 h-5 text-yellow-500"></i>
+                     <h3 class="text-base font-bold text-charcoal">Newsletter</h3>
+                </div>
+                <p class="text-sm text-gray-500 mb-4">最新のプロジェクトや技術記事をお届けします。</p>
+                
+                <form onsubmit="event.preventDefault();" class="flex gap-2 w-full">
+                    <input type="email" placeholder="Email address" class="flex-1 bg-white px-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 placeholder-gray-400">
+                    <button type="submit" class="bg-gray-900 text-white px-5 py-2 rounded-xl text-sm font-medium hover:bg-gray-800 transition-colors">
+                        Join
+                    </button>
+                </form>
+            </div>
+        </article>
+
+    </main>
+    
+    <footer class="mt-12 text-center text-gray-400 text-sm">
+        <p>&copy; 2024 Alex Design. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Clock Functionality
+        function updateClock() {
+            const now = new Date();
+            const options = { 
+                timeZone: 'Asia/Tokyo', 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: false
+            };
+            const timeString = now.toLocaleTimeString('en-US', options);
+            document.getElementById('clock').textContent = `${timeString} JST`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Copy Email Functionality
+        function copyEmail() {
+            const email = "hello@alexdesign.com";
+            const textElement = document.getElementById('email-text');
+            const iconElement = document.getElementById('copy-icon');
+            
+            // Fallback for clipboard API
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(email).then(() => {
+                    showCopiedState();
+                });
+            } else {
+                // Deprecated fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = email;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showCopiedState();
+            }
+
+            function showCopiedState() {
+                const originalText = textElement.textContent;
+                
+                textElement.textContent = "Copied!";
+                textElement.classList.add('text-green-600');
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    textElement.textContent = originalText;
+                    textElement.classList.remove('text-green-600');
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
